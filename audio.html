@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	*{
+		margin:0;
+		padding:0;
+	}
+	body{
+		background-color: #ccf;
+	}
+	.player a {
+		display: inline-block;
+		text-decoration: none;
+		margin: 20px;
+		font-size: 2em;
+	}
+	.player a:hover {
+		color: #ccc;
+	}
+	.player .progressbar {
+		height: 10px;
+		margin: 20px;
+		cursor:pointer;
+		position: relative;
+		background-color:pink;
+	}
+	.controls{
+		width:520px;
+		margin: 0 auto;
+	}
+	.dot {
+		width:20px;
+		height:20px;
+		cursor: pointer;
+		border-radius:20px;
+		background-color:#fff;
+		position:absolute;
+		left:0;
+		top: -6px;
+	}
+	.current-time,.duration{
+		color: #fff;
+		position:absolute;
+		top: 20px;
+	}
+	.current-time{
+		left: 20px;
+	}
+	.duration{
+		right:40px;
+	}
+	@key-frames dot-animation {
+		0%{
+			
+		}
+		100%{
+			
+		}
+	}
+  </style>
+ </head>
+ <body>
+  <div class="player">
+	<div class="progressbar">
+		<span id="dot" class="dot"></span>
+		<span class="current-time">00:00</span>
+		<span class="duration">00:00</span>
+	</div>
+	<div class="controls">
+		<a class="backward" href="javascript:void(0)">&lt;</a>
+		<a class="play" href="javascript:void(0)">Play</a>
+		<a class="forward" href="javascript:void(0)">&gt;</a>
+	</div>
+  </div>
+  <script src="js/jquery-1.11.0.min.js"></script>
+  <script>
+	$(function(){
+	var player;
+	var music = {
+		init : function(params){
+			player=new Audio()
+			var url = params['url'];
+			music.settingPlayerUrl(url);
+		},
+		play : function(){
+			if(player==null){
+				console.error('player not initialization.');
+			}
+			player.play();
+		},
+		pause : function(){
+			player.pause();
+		},
+		backward : function(url){
+			music.settingPlayerUrl(url);
+		},
+		forward : function(url){
+			music.settingPlayerUrl(url);
+		},
+		settingVolumn : function(volumn){
+			player.volumn=volumn;
+		},
+		settingPlayerUrl : function(url){
+			player.pause();
+			player.src=url;
+			player.load();
+		},
+		formatSeconds : function(value){
+			var time=parseInt(value);
+			var minute=0;
+			var hours=0;
+			if(time>60){
+				minute=parseInt(time/60);
+				time=parseInt(time%60);
+			if(minute>60){
+				hours=parseInt(minute/60);
+				minute=parseInt(minute%60);
+			}
+			}
+			var result=music.toDouble(parseInt(time));
+			if(minute>0){
+				result=music.toDouble(parseInt(minute))+":"+result;
+			}else{
+				result=music.toDouble(parseInt(minute))+":"+result;
+			}
+			if(hours>0){
+				result=music.toDouble(parseInt(hours))+":"+result;
+			}
+			return result;	
+		},
+		toDouble : function(value){
+			return value<10?"0"+value:value;
+		},
+		handlerProgressBar : function(node,curtime,speed){
+			node.css('left',(curtime*speed));
+		},
+		seek : function(node,curtime){
+			console.log('seek....');
+			player.currentTime=curtime;
+			node.text(music.formatSeconds(curtime));
+		},
+		playerListener : function(){
+			player.addEventListener("play",function(){
+				duration=player.duration;
+				$('.duration').text(music.formatSeconds(duration));
+			});
+		},
+		updateListener : function(){
+			player.addEventListener("timeupdate",function(){
+				var speed=parseInt(progressBar.css('width'))/duration;
+				music.handlerProgressBar(dot,player.currentTime,speed);
+				$('.current-time').text(music.formatSeconds(player.currentTime));
+			});
+		},
+		endedListener : function(){
+			player.addEventListener("ended",function(){
+				console.log("ended");
+			});
+		},
+		loadstartListener : function(){
+			player.addEventListener("loadstart",function(){
+				console.log("loadstart");
+			});
+		},
+		progressListener : function(){
+			player.addEventListener("progress",function(){
+				console.log("progress");
+			});
+		},
+		pauseListener : function(){
+			player.addEventListener("pause",function(){
+				console.log("pause");
+			});
+		},
+		canplaythroughListener : function(){
+			player.addEventListener("canplaythrough",function(){
+				console.log("canplaythrough");
+			});
+		},
+		canplayListener : function(){
+			player.addEventListener("canplay",function(){
+				console.log("canplay");
+			});
+		}
+	};
+	
+		//初始化播放器
+		music.init({
+			'url':'E:/KuGou/郁可唯 - 时间煮雨.mp3',
+			'list': null
+		});
+		//添加监听事件
+		music.playerListener();
+		music.updateListener();
+
+		var dot=$(".dot");
+		var backward=$(".backward");
+		var play=$(".play");
+		var forward=$(".forward");
+		var progressBar=$('.progressbar');
+		var duration=0;//当前播放音乐的时间秒数
+
+		//绑定进度条事件
+		var statu=false;
+		var left=0;
+		var lx=0;
+		var ox=0;
+		dot.mousedown(function(e){
+			e.preventDefault();
+			music.pause();
+			lx=$(this).offset().left;
+			ox=e.pageX-left;
+			statu=true;
+			console.log('mousedown');
+		});
+		dot.mousemove(function(e){
+			console.log('mousemove');
+			e.preventDefault();
+			music.pause();
+			var maxWidth=parseInt(progressBar.css('width'));
+			if(statu){
+				left=e.pageX-ox;
+				if(left<0){
+					left=0;
+				}
+				if(left>maxWidth){
+					left=maxWidth;
+				}
+				$(this).css('left',left);
+			}
+			var t_width=(maxWidth-parseInt(dot.css('left')));
+			var speed=maxWidth/duration;
+			var curWidth=(maxWidth-t_width);
+			var curtime=(curWidth/speed);
+			var node=$('.current-time');
+			music.seek(node,curtime);
+		});
+		dot.mouseout(function(e){
+			console.log('mouseout');
+			e.preventDefault();
+			music.play();
+		});
+		dot.mouseup(function(e){
+			console.log('mouseup');
+			e.preventDefault();
+		});
+		progressBar.click(function(e){
+			var maxWidth=parseInt(progressBar.css('width'));
+			if(!statu){
+				var t_left=$(this).offset().left;
+				left=e.pageX-t_left;
+				if(left<0)
+					left=0;
+				if(left>maxWidth)
+					left=maxWidth;
+				dot.stop().animate({'left':left},200);
+			}
+			var t_width=(maxWidth-parseInt(dot.css('left')));
+			var speed=maxWidth/duration;
+			var curWidth=(maxWidth-t_width);
+			var curtime=(curWidth/speed);
+			var node=$('.current-time');
+			console.log('maxWidth='+maxWidth);
+			console.log('dot.css='+parseInt(dot.css('left')));
+			console.log('t_width='+t_width);
+			console.log('speed='+speed);
+			console.log('curWidth='+curWidth);
+			console.log('curtime='+curtime);
+			music.seek(node,curtime);
+		});
+		$(document).mouseup(function(){
+			statu=false;
+		});
+
+		$('.play').click(function(){
+			music.play();
+			$(this).text('Pause');
+		});
+	});
+  </script>
+ </body>
+</html>

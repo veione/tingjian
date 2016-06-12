@@ -1,0 +1,54 @@
+HTML5 Audio API
+
+标签属性:
+src url 播放音乐的url地址(火狐只支持ogg的音乐,而IE9只支持mp3格式,chrome全支持)。
+preload preload	预加载(在页面加载时进行加载或者说是缓冲音频),如果使用了autoplay该属性失效。
+loop loop 循环播放
+controls controls 是否显示默认控制条(控制按钮)
+autoplay autoplay 自动播放
+
+duration 获取媒体文件的总时长,以s为单位,如果无法获取,返回NaN
+paused 如果媒体文件被暂停,那么paused属性返回true,否则返回false
+ended 如果媒体文件播放完毕返回true
+muted 用来获取或设置静音状态。值为boolean
+volumn 控制音量属性值为0-1;0为音量最小,1为音量最大
+startTime 返回起始播放时间
+currentTime 返回当前播放时间,单位为s
+currentSrc 返回正在播放或已加载的文件
+error 返回错误码,为uull的时候为正常,否则可通过Music.error.code来获取具体的错误码
+1：用户终止,2：网络错误,3：解码错误,4：URL无效
+networkState:
+0：此元素未初始化 1：正常但没有网络 2：正在下载数据 3：没有找到资源
+buffered：返回以缓冲区域，TimeRanges
+preload：
+none：不预载 metadata：预加载信息 auto：自动加载
+readyState：
+1：HAVE_NOTHING	2:HAVE_METADATA 3:HAVE_CURRENT	4:HAVE_FUTURE_DATA 5:HAVE_ENOUGH_DATA
+seeking	是否在seeking
+playbackRate	当前播放速度
+defaultPlaybackRate	默认的回放速度
+played	返回已经播放的区域，TimeRanges
+seekable	返回可以seek的区域 TimeRanges
+
+
+方法：
+load()	加载音频、视频软件
+play()	加载并播放音频、视频文件或重新播放暂停的音频、视频
+pause()	暂停处于播放状态的音频、视频
+canPlayType(obj)    测试是否支持给定的Mini类型的文件
+
+事件：
+loadstart	客户端开始请求数据
+progress	客户端正在请求数据(或者说正在缓冲)
+play		play()和autoplay播放时
+pause		pause()方法触发时
+ended		当前播放结束
+timeupdate	当前播放时间发生改变的时候。播放中常用的时间处理
+canplaythrough	歌曲已经载入完全完成
+canplay		缓冲至目前可播放状态
+
+MIME-Type分别是：
+mp3	audio/mpeg
+ogg	audio/ogg
+wav	audio/wav
+

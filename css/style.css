@@ -1,0 +1,512 @@
+.main-container{
+  width: 100%;
+  height: 975px;
+  position: relative;
+  background: url("../images/back.png") no-repeat center fixed;
+  background-size:cover;
+  -moz-background-size:cover;
+  -webkit-background-size:cover;
+}
+.list-bar{
+  left: 0;
+  width:20%;
+  height: 780px;
+  float: left;
+}
+.content-bar{
+  width:80%;
+  height:760px;
+  float: right;
+}
+.player-bar{
+  width: 100%;
+  height:80px;
+  position: fixed;
+  bottom: 0;
+  background-color: rgba(0,0,0,.3);
+}
+.search-control{
+  width: 280px;
+  height: 40px;
+}
+.default-list,.online-list{
+  margin-top: 20px;
+}
+.sequence{
+  font-size:2em;
+  margin-right:20px;
+}
+.time{
+  margin-top: -30px;
+}
+@media (max-width: 1200px){
+  .time{
+    display: none;
+  }
+}
+a.list-group-item .list-group-item-heading, button.list-group-item .list-group-item-heading {
+  color: #fff;
+}
+.text-white{
+  color: #fff;
+}
+.text-gray{
+  color:gray;
+}
+.navbar {
+    position: relative;
+    min-height: 80px;
+    margin-bottom: 20px;
+    border: 0px solid transparent;
+}
+.navbar-top {
+  background-color: transparent;
+  border-color: #e7e7e7;
+}
+.navbar-top .navbar-brand {
+  color: #fff;
+}
+.navbar-top .navbar-brand:hover,
+.navbar-top .navbar-brand:focus {
+  color: #5e5e5e;
+  background-color: transparent;
+}
+.navbar-top .navbar-text {
+  color: #fff;
+}
+.navbar-top .navbar-nav > li > a {
+  color: #fff;
+}
+.navbar-top .navbar-nav > li > a:hover,
+.navbar-top .navbar-nav > li > a:focus {
+  color: #fff;
+  text-decoration: underline;
+  background-color: transparent;
+}
+.navbar-top .navbar-nav > .active > a,
+.navbar-top .navbar-nav > .active > a:hover,
+.navbar-top .navbar-nav > .active > a:focus {
+  color: #555;
+  background-color: #e7e7e7;
+}
+.navbar-top .navbar-nav > .disabled > a,
+.navbar-top .navbar-nav > .disabled > a:hover,
+.navbar-top .navbar-nav > .disabled > a:focus {
+  color: #ccc;
+  background-color: transparent;
+}
+.navbar-top .navbar-toggle {
+  border-color: #ddd;
+}
+.navbar-top .navbar-toggle:hover,
+.navbar-top .navbar-toggle:focus {
+  background-color: #ddd;
+}
+.navbar-top .navbar-toggle .icon-bar {
+  background-color: #888;
+}
+.navbar-top .navbar-collapse,
+.navbar-top .navbar-form {
+  border-color: #e7e7e7;
+}
+.navbar-top .navbar-nav > .open > a,
+.navbar-top .navbar-nav > .open > a:hover,
+.navbar-top .navbar-nav > .open > a:focus {
+  color: #555;
+  background-color: #e7e7e7;
+}
+@media (max-width: 767px) {
+  .navbar-top .navbar-nav .open .dropdown-menu > li > a {
+    color: #fff;
+  }
+  .navbar-top .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-top .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #333;
+    background-color: transparent;
+  }
+  .navbar-top .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-top .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-top .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #555;
+    background-color: #e7e7e7;
+  }
+  .navbar-top .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-top .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-top .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #ccc;
+    background-color: transparent;
+  }
+}
+.navbar-top .navbar-link {
+  color: #fff;
+}
+.navbar-top .navbar-link:hover {
+  color: #333;
+}
+.navbar-top .btn-link {
+  color: #fff;
+}
+.navbar-top .btn-link:hover,
+.navbar-top .btn-link:focus {
+  color: #333;
+}
+.navbar-top .btn-link[disabled]:hover,
+fieldset[disabled] .navbar-default .btn-link:hover,
+.navbar-default .btn-link[disabled]:focus,
+fieldset[disabled] .navbar-default .btn-link:focus {
+  color: #ccc;
+}
+
+/* 顶部导航栏登录按钮 */
+@media (min-width: 768px) {
+  .navbar-nav {
+    float: left;
+    margin: 0;
+  }
+  .navbar-nav > li {
+    float: left;
+  }
+  .navbar-nav > li > a {
+    display: block;
+    line-height: 70px;
+  }
+}
+
+/*顶部导航栏搜索按钮*/
+.navbar-form {
+  padding: 10px 15px;
+  margin-top: 24px;
+  margin-right: -15px;
+  margin-bottom: 8px;
+  margin-left: -15px;
+  border: none;
+}
+
+/*搜索控件*/
+.navbar-form .input-group > .search-control {
+  background-color: transparent !important;
+  color: #fff;
+  placeholder-color: #fff;
+  transition:width .5s linear;
+  -webkit-transition:width .5s linear;
+  -moz-transition:width .5 linear;
+}
+.navbar-form .input-group > .search-control::-webkit-input-placeholder {
+　　color: #fff !important; /* WebKit browsers */
+}
+.navbar-form .input-group > .search-control:-moz-placeholder {
+　　color: #fff !important; /* Mozilla Firefox 4 to 18 */
+}
+.navbar-form .input-group > .search-control::-moz-placeholder {
+　　color: #fff !important; /* Mozilla Firefox 19+ */
+　}
+.navbar-form .input-group > .search-control:-ms-input-placeholder {
+　　color: #fff !important; /* Internet Explorer 10+ */
+}
+.btn-info {
+    color: #fff;
+    background-color: transparent !important;
+    border-color: #46b8da;
+}
+@media (max-width: 1280px){ 
+  .navbar-form .input-group > .search-control {
+    width: 300px;
+    margin-left: 60px;
+  }
+}
+/*<=1199的设备*/
+@media (max-width: 1199px){ 
+  .navbar-form .input-group > .search-control {
+    width: 400px;
+    margin-left: 80px;
+  }
+}
+@media (max-width: 1080px){
+  .navbar-form .input-group > .search-control {
+    width: 360px;
+    margin-left: 60px;
+  }
+}
+/*<=991的设备 */
+@media (max-width: 991px){
+  .navbar-form .input-group > .search-control {
+    width: 300px;
+    margin-left: 60px;
+  }
+}
+@media (max-width: 920px){
+  .navbar-form .input-group > .search-control {
+    width: 200px;
+    margin-left: 40px;
+  }
+}
+@media (max-width: 797px){
+  .navbar-form .input-group > .search-control {
+    width: 160px;
+    margin-left: 20px;
+  }
+}
+
+
+
+@media (min-width: 1300px){
+  .navbar-form .input-group > .search-control {
+    width: 600px;
+    margin-left: 120px;
+  } 
+}
+/*>=1200*/
+@media (min-width: 1200px){
+  .navbar-form .input-group > .search-control {
+    width: 520px;
+    margin-left: 80px;
+  }
+} 
+
+/*播放列表*/
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus{
+  color: bisque;
+  cursor: default;
+  background-color: transparent !important;
+  border: none;
+}
+.list-bar .nav > li > a ,
+.content-bar .nav > li > a {
+  color: #fff;
+}
+.list-bar .nav > li > a:hover,
+.list-bar .nav > li > a:focus,
+.content-bar .nav > li > a:hover,
+.content-bar .nav > li > a:focus {
+  background-color: transparent !important;
+}
+.list-group-item{
+  background-color: rgba(0,0,0,.1);
+}
+.list-group-item.active,
+.list-group-item.active:hover,
+.list-group-item.active:focus {
+  background-color: rgba(0,0,0,.3);
+  border-color: #fff;
+}
+a.list-group-item:hover,
+button.list-group-item:hover,
+a.list-group-item:focus,
+button.list-group-item:focus {
+  background-color: transparent !important;
+}
+
+
+/*播放条*/
+.player-button-group {
+  width: 100%;
+  height: 80px;
+}
+.button-controls {
+  width: 600px;
+  height: inherit;
+  position: relative;
+  top: -2px;
+  margin: 0 auto;
+}
+.player-button-group ul {
+  list-style: none;
+}
+.player-button-group ul>li{
+  float: left;
+  margin:0 12px;
+}
+.player-button-group ul>li>a{
+  display: block;
+  padding: 0 20px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 3em;
+}
+.player-button-group a .icon-step-backward,
+.player-button-group a .icon-step-forward{
+  font-size: .8em;
+}
+.player-button-group a .icon-heart-empty,
+.player-button-group a .icon-volume-up,
+.player-button-group a .icon-volume-off,
+.player-button-group a .icon-volume-down{
+   font-size: .6em;
+}
+.player-button-group a .icon-volume-up:hover,
+.player-button-group a .icon-volume-off:hover,
+.player-button-group a .icon-volume-down:hover,
+.player-button-group a .icon-play:hover,
+.player-button-group a .icon-pause:hover,
+.player-button-group a .icon-step-backward:hover,
+.player-button-group a .icon-step-forward:hover{
+   color:#ccc;
+}
+.progress {
+  height: 10px;
+  margin-bottom: 0px;
+  overflow: hidden;
+  background-color: #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+          box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+}
+.progress-circle {
+  position: absolute;
+  top: -6px;
+  left: 85%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #fff;
+  -webkit-animation: progressbtn-animation 1s linear infinite;
+  animation: progressbtn-animation 1s linear infinite;
+}
+.time-current,.time-remain {
+  position: absolute;
+  color: #fff;
+  top: 16px;
+}
+.time-current {
+  left: 10px;
+}
+.time-remain {
+  right: 10px;
+}
+/*播放器收藏按钮*/
+.heart,.like {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  right: inherit;
+  top: -6px;
+  overflow: hidden;
+  background-size: 2900%;
+  background: url('../images/web_heart_animation_2.png') no-repeat left;
+}
+.content-bar .list-group-item{
+  cursor: pointer;
+  color: #fff;
+  margin: 20px 0;
+}
+.content-bar .list-group-item:hover,
+.content-bar .list-group-item:focus{
+  background: rgba(0,0,0,.3);
+}
+/*播放器进度条按钮动画*/
+@-webkit-keyframes progressbtn-animation{
+  from{
+     -webkit-box-shadow: 0 0 18px #fff;
+      -moz-box-shadow: 0 0 18px #fff;
+      box-shadow: 0 0 18px #fff;
+  }
+  50%{
+     -webkit-box-shadow: 0 0 28px #2a5caa;
+      -moz-box-shadow: 0 0 28px #2a5caa;
+      box-shadow: 0 0 28px #2a5caa;
+  }
+  to{
+     -webkit-box-shadow: 0 0 18px #fff;
+      -moz-box-shadow: 0 0 18px #fff;
+      box-shadow: 0 0 18px #fff;
+  }
+}
+@keyframes progressbtn-animation{
+  from{
+     -webkit-box-shadow: 0 0 18px #fff;
+      -moz-box-shadow: 0 0 18px #fff;
+      box-shadow: 0 0 18px #fff;
+  }
+  50%{
+     -webkit-box-shadow: 0 0 28px #2a5caa;
+      -moz-box-shadow: 0 0 28px #2a5caa;
+      box-shadow: 0 0 28px #2a5caa;
+  }
+  to{
+      -webkit-box-shadow: 0 0 18px #fff;
+      -moz-box-shadow: 0 0 18px #fff;
+      box-shadow: 0 0 18px #fff;
+  }
+}
+.heart:hover,.heart:focus{
+  background-position: right;
+}
+@-webkit-keyframes heart-blast {
+  0%{
+    background-position: left;
+  }
+  100%{
+    background-position: right;
+  }
+}
+@keyframes heart-blast{
+  0%{
+    background-position: left;
+  }
+  100%{
+    background-position: right;
+  }
+}
+.heart-animation{
+  display: inline-block;
+  -webkit-animation-name: heart-blast;
+  animation-name: heart-blast;
+  -webkit-animation-duration: .8s;
+  animation-duration: .8s;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-timing-function: steps(28);
+  animation-timing-function: steps(28);
+  background-position: right;
+}
+/*播放器音量控制按钮*/
+.volumn-progress {
+  width: 100px;
+  margin-top: 30px;
+}
+.volumn-progress-bar{
+  width: 30%;
+}
+.volumn-pane{
+  position: relative;
+}
+.progress-volumn-circle{
+  position: absolute;
+  top: -3px;
+  left: 30%;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  -webkit-animation: progressbtn-animation 2s infinite;
+  animation: progressbtn-animation 2s infinite;
+}
+
+/*播放器内容区域模块*/
+.like {
+  top: -6px;
+  right: 60px;
+}
+.like:hover,.like:focus {
+  background-position: right;
+}
+.btn-append-to{
+  top: -52px;
+  font-size: 1.8em;
+  padding: 20px;
+}
+.btn-append-to:hover,
+.btn-append-to:focus{
+  color:#ccc;
+}
+.time-duration{
+  position: absolute;
+  top: 23px;
+  right: 140px;
+}
+
