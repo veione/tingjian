@@ -8,6 +8,10 @@ $(function(){
 			music.settingPlayerUrl(url);
 			player.volume=volume/100;
 			music.volume=volume;
+			var volumeBar=$('.volumn-progress-bar');
+			var volumnDot=$('.progress-volumn-circle');
+			volumnDot.css('left',music.volume);
+			volumeBar.css('width',music.volume);
 		},
 		duration : 0,
 		volume : 0, /*当前播放器的默认声音,用于禁音后重新设置音量做准备*/
@@ -18,9 +22,13 @@ $(function(){
 				throw new Error('music player not initialization.');
 			}
 			player.play();
+			var handler=playBtn.find('.play-status');
+			handler.removeClass('icon-play').addClass('icon-pause');
 		},
 		pause : function(){
 			player.pause();
+			var handler=playBtn.find('.play-status');
+			handler.removeClass('icon-pause').addClass('icon-play');
 		},
 		backward : function(url){
 			music.settingPlayerUrl(url);
@@ -159,7 +167,7 @@ $(function(){
 	//初始化播放器
 	music.init({
 		'url':'http://yinyueshiting.baidu.com/data2/music/134369388/4626708293600128.mp3?xcode=1f970274219ec4286a37d80a2c02fc5b',
-		'volume':60,
+		'volume':30,
 		'list': null
 	});
 	//添加监听事件
@@ -191,11 +199,9 @@ $(function(){
 		if(status==0){
 			music.play();
 			$(this).attr('status','1');
-			handler.removeClass('icon-play').addClass('icon-pause');
 		}else{
 			music.pause();
 			$(this).attr('status','0');
-			handler.removeClass('icon-pause').addClass('icon-play');
 		}
 	});
 
@@ -339,8 +345,11 @@ $(function(){
 		statu=false;
 		volumn_statu=false;
 		music.dragging=false;
-		if(!music.dragging){
-			music.play();//TODO
+		var status=playBtn.attr('status');
+		var handler=playBtn.find('.play-status');
+		if(status==1){
+			music.play();
+			handler.removeClass('icon-play').addClass('icon-pause');
 		}
 	});
 	progressBtn.mousedown(function(e){
