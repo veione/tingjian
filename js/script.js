@@ -158,7 +158,7 @@ $(function(){
 	
 	//初始化播放器
 	music.init({
-		'url':'E:/KuGou/郁可唯 - 时间煮雨.mp3',
+		'url':'http://yinyueshiting.baidu.com/data2/music/134369388/4626708293600128.mp3?xcode=1f970274219ec4286a37d80a2c02fc5b',
 		'volume':60,
 		'list': null
 	});
@@ -339,7 +339,9 @@ $(function(){
 		statu=false;
 		volumn_statu=false;
 		music.dragging=false;
-		music.play();
+		if(!music.dragging){
+			music.play();//TODO
+		}
 	});
 	progressBtn.mousedown(function(e){
 		e.preventDefault();
